@@ -12,9 +12,11 @@
 - [Data Preparation](#data-preparation)
 - [Analysis Pipeline](#analysis-pipeline)
 - [Results](#results)
+- [Model Analysis](#model-analysis)
 - [Technical Challenges](#technical-challenges)
 - [Future Work](#future-work)
 - [Contributing](#contributing)
+- [Contact](#contact)
 - [License](#license)
 
 ## Project Overview
@@ -106,10 +108,47 @@ We implemented and compared four classification models:
    ![Logistic Regression Confusion Matrix](docs/confusion_matrix_logistic_regression.png)
    ![Logistic Regression ROC Curves](docs/roc_curves_logistic_regression.png)
 
-### Performance Metrics
-- Logistic Regression achieved the highest accuracy at 88%
-- Other models maintained consistent performance around 83%
-- Detailed metrics available in the classification reports
+## Model Analysis
+
+### Learning Curves Evaluation
+
+1. **XGBoost Analysis**
+   ![XGBoost Learning Curves](docs/learning_curves_xgboost.png)
+   - Exhibits clear signs of overfitting
+   - Training loss (blue) continues decreasing while validation loss (red) plateaus
+   - Recommended improvements:
+     - Implement early stopping around iteration 7-8
+     - Adjust learning rate
+     - Strengthen regularization parameters
+
+2. **Logistic Regression Analysis**
+   ![Logistic Regression Learning Curves](docs/learning_curves_logistic_regression.png)
+   - Shows high bias (underfitting)
+   - Both training and validation scores are relatively low
+   - Recommended improvements:
+     - Increase model complexity
+     - Add relevant features
+     - Consider kernel techniques
+
+3. **Random Forest Analysis**
+   ![Random Forest Learning Curves](docs/learning_curves_random_forest.png)
+   - Severe overfitting detected
+   - Perfect training score (1.0) across all training set sizes
+   - Validation score significantly lower (~0.80-0.85)
+   - Recommended improvements:
+     - Implement tree pruning
+     - Increase minimum samples per leaf
+     - Reduce maximum tree depth
+     - Strengthen regularization
+
+4. **SVM Analysis**
+   ![SVM Learning Curves](docs/learning_curves_svm.png)
+   - Shows instability with larger training sets
+   - Overfitting particularly apparent around training set size 70
+   - Recommended improvements:
+     - Adjust C parameter
+     - Explore different kernel functions
+     - Fine-tune hyperparameters
 
 ## Technical Challenges
 1. **Class Imbalance**
@@ -138,7 +177,10 @@ We implemented and compared four classification models:
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Contact
-* pejman.ebrahimi77@gmail.com
+For questions, suggestions, or collaboration opportunities, please reach out:
+* Email: pejman.ebrahimi77@gmail.com
+* LinkedIn: [Pejman Ebrahimi](https://www.linkedin.com/in/pejman-ebrahimi-4a60151a7/)
+* Website: [Personal Portfolio](https://arad1367.github.io/pejman-ebrahimi/)
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
